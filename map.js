@@ -27,3 +27,19 @@ let scale = new mapboxgl.ScaleControl({
 
 // add the scale to your map
 map.addControl(scale, 'bottom-right')
+let geolocate = new mapboxgl.GeolocateControl({
+    positionOptions: {
+        enableHighAccuracy: true
+    },
+    trackUserLocation: true,
+    showUserLocation: true,
+    fitBoundsOptions: {
+    }
+})
+
+map.addControl(geolocate, 'top-left')
+
+// this is an event handler
+geolocate.on('geolocate', function(event) {
+    console.log(event.coords)
+})
