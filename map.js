@@ -91,7 +91,16 @@ let data = [
         location: [-73.96204,40.80994],
         content: 'This was once tennis courts'
     },
+    {
+        location: [-73.96655,40.80388],
+        content: 'The market I go everyday'
+    },
+    {
+        location: [-73.96094,40.80827],
+        content: 'There was a sculpture here last semester'
+    },
     ]
+   
 
 data.forEach(function(d) {
 
