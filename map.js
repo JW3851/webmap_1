@@ -2,7 +2,7 @@
 
 console.log('Loaded map.js')
 
-mapboxgl.accessToken = 'YOUR TOKEN HERE BETWEEN THE QUOTES'
+mapboxgl.accessToken = 'pk.eyJ1IjoianczODUxIiwiYSI6ImNrN29qcWU2MTBhNWkzZXFxNnQ0OThka2sifQ.tDkhsqVfmARI4pSB5G3CZw'
 
 let map = new mapboxgl.Map({
     container: 'map',
@@ -27,3 +27,34 @@ let scale = new mapboxgl.ScaleControl({
 
 // add the scale to your map
 map.addControl(scale, 'bottom-right')
+
+let geolocate = new mapboxgl.GeolocateControl({
+    positionOptions: {
+        enableHighAccuracy: true
+    },
+    trackUserLocation: true,
+    showUserLocation: true,
+    fitBoundsOptions: {
+    }
+})
+
+map.addControl(geolocate, 'top-left')
+
+// this is an event handler
+geolocate.on('geolocate', function(event) {
+    console.log(event.coords)
+})
+
+geolocate.on('geolocate', function(event) {
+
+    // create new variables to store the attributes we're interested in from the event
+    let lng = event.coords.longitude
+    let lat = event.coords.latitude
+
+    // debug
+    console.log('geolocated:', lng, lat)
+
+    // format lng lat values and display them on our 'info' element
+    document.getElementById('info').innerHTML = lng.toFixed(5) + "," + lat.toFixed(5)
+
+})
